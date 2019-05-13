@@ -4,8 +4,7 @@ import { ToastrService } from '../common/toastr.service';
 import { ActivatedRoute } from '@angular/router';
 import { IEvent } from './shared';
 
-declare let toastr;
-@Component ({
+@Component({
   template: `<div>
                  <h1>Upcoming Angular Events</h1>
                  <hr>
@@ -13,7 +12,7 @@ declare let toastr;
                   <div  class="col-md-5" *ngFor="let event of events">
                    <event-thumbnail (click) = "handleThumbnailClick(event.name)"  [event]='event' #thumbnail
                            (eventClick) = "handleEventClick($event)" >
-                           </event-thumbnail>
+                   </event-thumbnail>
                       <button class="btn btn-primary" (click) = "thumbnail.logFoo()"> {{thumbnail.someProperty}}</button>
                  </div>
                  </div>
@@ -38,24 +37,21 @@ ngOnInit(): void {
   //this.events = this.eventService.getEvents();
 
   /*  ###
-  Con esto simulo que estoy obteniendo la data a traves de un observable */
-  //this.eventService.getEventsResolver().subscribe(events =>  this.events = events);
+  Con esto simulo que estoy obteniendo la data a traves de un observable simulando ASINCRONIA */
+  // this.eventService.getEventsResolver().subscribe(events =>  this.events = events);
 
   /* Aqui estoy sacando la data de la URL que me envia desde el resolver, no estoy haciendo uso de un observable
-   hasta que no tenga la data a mostrar no se mostrara el componente que lista los eventos */
+   hasta que no tenga la data a mostrar no se mostrara el componente que lista los eventos*/
   this.events =  this.route.snapshot.data['events'];
 
 }
 
   handleEventClick(infor): void {
-    console.log(' contenedor :', infor );
+    console.log(' valor emitido por el @output :', infor );
   }
 
 
   handleThumbnailClick(eventName) {
-    toastr.success(eventName);
-
-
-
+      this.toastrService.success(eventName);
   }
 }

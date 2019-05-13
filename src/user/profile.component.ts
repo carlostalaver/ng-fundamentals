@@ -23,13 +23,16 @@ export class ProfileComponent implements OnInit {
               @Inject(forwardRef(() => Router)) private router: Router) {}
 
   ngOnInit(): void {
-     this.firstName = new FormControl(this.authService.currentUser.firstName, [Validators.required]);
+     this.firstName = new FormControl(this.authService.currentUser.firstName,
+                                 [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z].*')]);
      this.lastName = new FormControl(this.authService.currentUser.lastName, [Validators.required]);
 
     this.profileForm = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName
     });
+
+    console.log('el formulario  es ', this.profileForm);
 
   }
 

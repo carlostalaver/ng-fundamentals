@@ -8,12 +8,14 @@ import { IEvent } from './shared';
                 <h2>{{event?.name}}</h2>
                 <div>Date: {{event?.date}}</div>
 
+                 <!--USANDO UN NGSWITCH EN LA PLANTILLA-->
                 <div [ngSwitch]="event?.time" [ngClass]= "getStartTimeClass()">
                     Time: {{event?.time}}
                   <span *ngSwitchCase ="'8:00 am'"  >Early Start</span>
                   <span *ngSwitchCase ="'10:00 am'">Late Start</span>
                   <span *ngSwitchDefault >Norma Start</span>
                 </div>
+
                 <div [ngStyle]= "{'color': event?.time === '9:00 am' ? 'blue': 'red'}">Price: {{event?.price}}</div>
                 <div *ngIf="event?.location">
                   <span>Location: {{event?.location?.address}}</span>
@@ -37,30 +39,30 @@ export class EventThumbnailComponent {
   /* OJO ver como se aplican los style usando ngClass y ngStyle */
   @Input() event: IEvent;
   @Output() eventClick = new EventEmitter();
-  someProperty: any  = 'Contenedor';
+  someProperty: any = 'Contenedor';
 
 
-handleClickMe(): void {
-  console.log('haciendo click');
-  this.eventClick.emit({
-    a: 1,
-    b: 2,
-    c: 3
-  });
-}
-
-logFoo(): void {
-  console.log('llamando al metodo logFoo');
-}
-
-
-getStartTimeClass() {
-
-  if (this.event && this.event.time === '8:00 am') {
-      return ['green', 'bold'];
+  handleClickMe(): void {
+    console.log('haciendo click');
+    this.eventClick.emit({
+      a: 1,
+      b: 2,
+      c: 3
+    });
   }
-  return [ ];
+
+  logFoo(): void {
+    console.log('llamando al metodo logFoo');
+  }
 
 
-}
+  getStartTimeClass() {
+
+    if (this.event && this.event.time === '8:00 am') {
+      return ['green', 'bold'];
+    }
+    return [];
+
+
+  }
 }

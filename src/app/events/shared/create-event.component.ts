@@ -14,7 +14,6 @@ import { EventService } from "./event.service";
     `]
 })
 export class CreateEventComponent implements OnInit {
-
     isDirty: boolean = true;
     newEvent;
 
@@ -34,7 +33,7 @@ saveEvent(formValues) {
 }
 
 ngOnInit(): void {
-  this.newEvent= {
+  this.newEvent = {
     name: 'NG Spectacular',
     date: '8/8/18',
     time: '10:00 am',

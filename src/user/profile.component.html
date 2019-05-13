@@ -2,10 +2,13 @@
     <h1>Edit Your Profile </h1>
     <hr>
     <div class="col-md-4">
-      <form autocomplete="off" novalidate [formGroup]="profileForm"  (ngSubmit)="saveProfile(profileForm.value)">
+      <form  [formGroup]="profileForm"  (ngSubmit)="saveProfile(profileForm.value)" autocomplete="off" novalidate>
         <div class="form-group" [ngClass]="{'error':!validateFirstName()}">
           <label for="firstName">First Name:</label>
-          <em *ngIf="!validateFirstName()">Requiered</em>
+          ---> {{profileForm.controls.firstName?.errors?.minlength | json}}
+          <em *ngIf="!validateFirstName() && profileForm.controls.firstName?.errors?.required">Requiered</em>
+          <em *ngIf="!validateFirstName() && profileForm.controls.firstName?.errors?.pattern">Solo letras</em>
+          <em *ngIf="!validateFirstName() && (profileForm.controls.firstName?.errors?.minlength)"> Min 3 caracteres</em>
           <input formControlName="firstName" id="firstName" type="text" class="form-control" placeholder="First Name..." />
         </div>
         <div class="form-group" [ngClass]="{'error': !validateLastName() }">

@@ -8,11 +8,13 @@ import { map } from 'rxjs/operators';
 })
 export class EventListResolver implements Resolve<any> {
 
-  constructor(@Inject(forwardRef(() => EventService)) private eventService: EventService){
+  constructor(@Inject(forwardRef(() => EventService)) private eventService: EventService) {
   }
-/* por lo general en un metodo resolver se realiza una llamada a un metodo asincrono */
+  /* por lo general en un metodo resolver se realiza una llamada a un metodo asincrono */
 
-resolve() {
-    return this.eventService.getEventsResolver().pipe(map(events => events));
+  resolve() {
+    return this.eventService.getEventsResolver().pipe(
+        map(events => events)
+      );
   }
 }

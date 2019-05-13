@@ -15,6 +15,7 @@ export class EventDetailsComponent  implements OnInit {
   constructor( @Inject(forwardRef(() => EventService)) private eventService: EventService,
                @Inject(forwardRef(() => ActivatedRoute)) private route: ActivatedRoute) {
   }
+
   ngOnInit(): void {
     this.event =  this.eventService.getEvent(+this.route.snapshot.params['id']);
   }

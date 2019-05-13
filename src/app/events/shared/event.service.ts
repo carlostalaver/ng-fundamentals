@@ -1,44 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Subject, Observable} from 'rxjs';
 import { IEvent } from './event.model';
-@Injectable({
-  providedIn: 'root'
-})
-export class EventService {
 
-  constructor() { }
-
-   getEvents() {
-    return EVENTS;
-  }
-/* para trarbajar con el  guardia RESOLVER */
-   getEventsResolver(): Observable<IEvent[]> {
-    let subject = new Subject<IEvent[]>();
-    setTimeout(() => {
-      subject.next(EVENTS);
-      subject.complete();
-    }, 2000);
-    return subject;
-  }
-
-getEvent(id: number): IEvent {
-  return EVENTS.find(event => event.id === id);
-}
-
-saveEvent(event) {
-  event.id = 999;
-  event.session = [],
-  EVENTS.push(event);
-}
-
-updateEvent(event) {
-  let index = EVENTS.findIndex(x => x.id = event.id );
-  EVENTS[index] = event;
-}
-
-}
-
-let EVENTS: IEvent[] = [
+const EVENTS: IEvent[] = [
   {
     id: 1,
     name: 'Angular Connect',
@@ -344,4 +308,43 @@ let EVENTS: IEvent[] = [
     ]
   }
 ];
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EventService {
+
+  constructor() { }
+
+  getEvents() {
+    return EVENTS;
+  }
+  getEvent(id: number): IEvent {
+    return EVENTS.find(event => event.id === id);
+  }
+
+  /* para trabajar con el  guardia RESOLVER */
+  getEventsResolver(): Observable<IEvent[]> {
+    const subject = new Subject<IEvent[]>();
+    setTimeout(() => {
+      subject.next(EVENTS);
+      subject.complete();
+    }, 1000);
+    return subject.asObservable();
+  }
+
+
+  saveEvent(event) {
+    event.id = 999;
+    event.session = [],
+      EVENTS.push(event);
+  }
+
+  updateEvent(event) {
+    let index = EVENTS.findIndex(x => x.id = event.id);
+    EVENTS[index] = event;
+  }
+
+}
 

@@ -17,6 +17,7 @@ import { AuthService } from 'src/user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateSessionComponent } from './events/event-details/create-session.componet';
 import { SessionListComponent } from './events/event-details/session-list.component';
+import { ToastrService } from './common/toastr.service';
 
 
 @NgModule({
@@ -36,7 +37,15 @@ import { SessionListComponent } from './events/event-details/session-list.compon
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [EventRouteActivator, EventListResolver, AuthService,
+  providers: [
+    EventRouteActivator,
+    ToastrService,
+    EventListResolver,
+    AuthService,
+    /* usando la forma manual, se lee cuando necesite el guardia  canDeactivateCreateEvent usa la duncion checkDirtyState
+       esto lo hice como alternativa a la manera convencional (la que usa servicios), notar que checkDirtyState es una
+       funcion, no un servicio.
+    */
     {
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState,
@@ -47,7 +56,8 @@ import { SessionListComponent } from './events/event-details/session-list.compon
 export class AppModule { }
 
 // tslint:disable-next-line:max-line-length
-export function checkDirtyState(component: CreateEventComponent) { /* el primer parametro que recibe la funcion canDeactivate es el componente en sí */
+ /* el primer parametro que recibe la funcion canDeactivate es el componente en sí, hay mas */
+export function checkDirtyState(component: CreateEventComponent) {
 
   if (component.isDirty) {
     return window.confirm('You have not saved this event, do you really want to cancel?');

@@ -14,37 +14,37 @@ import { EventService } from "./event.service";
     `]
 })
 export class CreateEventComponent implements OnInit {
-    isDirty: boolean = true;
-    newEvent;
+  isDirty: boolean = true;
+  newEvent; // variable en con NgModel, se TIENE que declarar aquí para que no de error cuando se compila como una app de produccion
 
-  constructor(@Inject(forwardRef(() => Router)) private route: Router,
-              @Inject(forwardRef(() => EventService)) private eventService: EventService) {
+  constructor( @Inject(forwardRef(() => Router)) private route: Router,
+               @Inject(forwardRef(() => EventService)) private eventService: EventService) {
 
   }
-cancel(): void {
-  this.route.navigate(['/events']);
-}
-
-saveEvent(formValues) {
- this.eventService.saveEvent(formValues);
- this.isDirty = false;
- this.route.navigate(['/events']);
-
-}
-
-ngOnInit(): void {
-  this.newEvent = {
-    name: 'NG Spectacular',
-    date: '8/8/18',
-    time: '10:00 am',
-    price: 21.00,
-    location: {
-      address: 'vitacura 2736',
-      city: 'Felicity',
-      country: 'Chile'
-    },
-    onlineUrl: 'http://ngSpectacular.com',
-    imageUrl: 'http://ngSpectacular.com/logo.png'
+  cancel(): void {
+    this.route.navigate(['/events']);
   }
-}
+
+  saveEvent(formValues) {
+    this.eventService.saveEvent(formValues);
+    this.isDirty = false;
+    this.route.navigate(['/events']);
+
+  }
+
+  ngOnInit(): void {
+    this.newEvent = {
+      name: 'NG Spectacular',
+      date: '8/8/18',
+      time: '10:00 am',
+      price: 21.00,
+      location: {
+        address: 'vitacura 2736',
+        city: 'Felicity',
+        country: 'Chile'
+      },
+      onlineUrl: 'http://ngSpectacular.com',
+      imageUrl: 'http://ngSpectacular.com/logo.png'
+    }
+  }
 }

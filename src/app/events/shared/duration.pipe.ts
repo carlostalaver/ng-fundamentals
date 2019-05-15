@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DurationPipe implements PipeTransform {
 
   transform(value: number, args?: any): string {
-    console.log('llamando al pipe, ', args);
 
     switch (value) {
       case 1:

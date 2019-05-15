@@ -34,8 +34,9 @@
         <div class="form-group">
           <input type="text" name="searchTerm" [(ngModel)]="searchTerm" class="form-control" placeholder="Search Sessions" >
         </div>
-        <button class="btn btn-default"  modal-trigger> <!-- modal-trigger le digo al boton epa cuando haga clic
-                                                            activa el componente simple-modal, es una directiva propia llamada
+        <button class="btn btn-default"  modal-trigger="eventsForSessions"> <!-- modal-trigger="eventsForSessions" le digo al boton epa cuando haga clic
+                                                            activa el componente simple-modal, es una directiva propia y eventsForSessions es el id del modal
+                                                            a levantar
                                                              -->
           Search
         </button>
@@ -45,8 +46,9 @@
 </div>
 
 <!-- <simple-modal> </simple-modal> es un COMPONENTE que YO creé -->
-
-<simple-modal title="Matching Sessions" >
+<!-- closeOnBodyClick="'true'" si le paso true se cerrara el modal al hacer click en una de las opciones de la lsita
+  si le paso false no se cerrara -->
+<simple-modal #simpleModal closeOnBodyClick="true" title="Matching Sessions" elementId="eventsForSessions">
   <div class="list-group">
     <a class="list-group-item" *ngFor="let session  of foundSession"
        [routerLink]="['/events', session.eventId]" routerLinkActive="router-link-active" >

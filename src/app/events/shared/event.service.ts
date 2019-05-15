@@ -372,17 +372,18 @@ export class EventService {
     let result: ISession[] = [];
 
     EVENTS.forEach(event => {
+
       const matchingSessions = event.sessions.filter(session => {
-        const cumple = session.name.toLocaleLowerCase().indexOf(term) > -1 ;
+        const cumple = (session.name.toLocaleLowerCase().indexOf(term) > -1) ;
 
         if (cumple) {
           session['eventId'] = event.id;
         }
         return cumple;
       });
-
-     result = [...matchingSessions];
+     result = result.concat(...matchingSessions);
     });
+
 
     const emitter = new EventEmitter<ISession[]>(true);
     setTimeout(() => {

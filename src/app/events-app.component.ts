@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ToastrService } from './common/toastr.service';
 
 @Component({
   selector: 'events-app',

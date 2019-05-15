@@ -5,7 +5,7 @@ import { IEvent } from './shared';
 @Component({
   selector: 'event-thumbnail',
   template: `<div class="well hoverell thumbnail" [routerLink]="['/events', event.id]">
-                <h2>{{event?.name}}</h2>
+                <h2>{{event?.name | uppercase}}</h2>
                 <div>Date: {{event?.date}}</div>
 
                  <!--USANDO UN NGSWITCH EN LA PLANTILLA-->

@@ -12,6 +12,8 @@ import { IEvent, ISession } from "../shared";
 export class EventDetailsComponent  implements OnInit {
   event: IEvent;
   addMode: boolean;
+  filterBy = 'all';
+  sortBy = 'votes';
   constructor( @Inject(forwardRef(() => EventService)) private eventService: EventService,
                @Inject(forwardRef(() => ActivatedRoute)) private route: ActivatedRoute) {
   }

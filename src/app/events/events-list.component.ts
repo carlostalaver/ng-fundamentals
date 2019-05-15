@@ -1,6 +1,5 @@
 import { Component, Inject, forwardRef, OnInit } from '@angular/core';
 import { EventService } from './shared/event.service';
-import { ToastrService } from '../common/toastr.service';
 import { ActivatedRoute } from '@angular/router';
 import { IEvent } from './shared';
 
@@ -27,7 +26,6 @@ export class EventsListComponent implements OnInit {
 //events: any; // funciona con  ###
 
 constructor(@Inject(forwardRef(() => EventService)) private eventService: EventService,
-            @Inject(forwardRef(() => EventService)) private toastrService: ToastrService,
             @Inject(forwardRef(() => ActivatedRoute)) private route: ActivatedRoute
             ) {}
 
@@ -52,6 +50,5 @@ ngOnInit(): void {
 
 
   handleThumbnailClick(eventName) {
-      this.toastrService.success(eventName);
   }
 }

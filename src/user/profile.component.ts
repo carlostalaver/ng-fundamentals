@@ -34,7 +34,6 @@ export class ProfileComponent implements OnInit {
       firstName: this.firstName,
       lastName: this.lastName
     });
-
     console.log('el formulario  es ', this.profileForm);
 
   }

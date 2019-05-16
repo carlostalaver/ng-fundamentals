@@ -29,11 +29,23 @@ export class CreateEventComponent implements OnInit {
     this.eventService.saveEvent(formValues);
     this.isDirty = false;
     this.route.navigate(['/events']);
-
   }
 
   ngOnInit(): void {
     this.newEvent = {
+      name: 'NG Spectacular',
+      date: '8/8/18',
+      time: '10:00 am',
+      price: 21.00,
+      location: {
+        address: null ,
+        city: null,
+        country: null
+      },
+      onlineUrl: null,
+      imageUrl: 'http://ngSpectacular.com/logo.png'
+    };
+    };/* {
       name: 'NG Spectacular',
       date: '8/8/18',
       time: '10:00 am',
@@ -45,6 +57,6 @@ export class CreateEventComponent implements OnInit {
       },
       onlineUrl: 'http://ngSpectacular.com',
       imageUrl: 'http://ngSpectacular.com/logo.png'
-    }
+    }; */
   }
 }

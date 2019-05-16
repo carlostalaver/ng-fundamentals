@@ -38,25 +38,12 @@ export class CreateEventComponent implements OnInit {
       time: '10:00 am',
       price: 21.00,
       location: {
-        address: null ,
-        city: null,
-        country: null
-      },
-      onlineUrl: null,
-      imageUrl: 'http://ngSpectacular.com/logo.png'
-    };
-    };/* {
-      name: 'NG Spectacular',
-      date: '8/8/18',
-      time: '10:00 am',
-      price: 21.00,
-      location: {
         address: 'vitacura 2736',
         city: 'Felicity',
         country: 'Chile'
       },
       onlineUrl: 'http://ngSpectacular.com',
       imageUrl: 'http://ngSpectacular.com/logo.png'
-    }; */
+    };
   }
 }
